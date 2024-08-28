@@ -1,0 +1,3 @@
+- **Set up endpoint**: Run `uvicorn main:app --reload `.
+- **Example of sending a CV file to the endpoint**: Run `python testfileupload.py`， two examples of CV are included in the files.
+- **Test run withou the end point**: Run `python test_crew.py` for the detailed processing and run `python test_crew1go` for outputing all results in one go.
