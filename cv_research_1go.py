@@ -82,6 +82,9 @@ class CV_1go_tasks:
 
         Overall Assessment:
         [Brief summary of the applicant's strengths and potential for O1 visa approval]
+
+        Overall Candidacy Evaluation:
+        Rating: [Low/Medium/High]
         """
         ),
         expected_output="""
