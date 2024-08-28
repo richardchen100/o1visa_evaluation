@@ -6,7 +6,6 @@ from test_citation import get_citation_count_from_search
 load_dotenv()
 
 
-
 # --- Agents ---
 class O1visa_agents:
     def CV_research_agent(self, tool):

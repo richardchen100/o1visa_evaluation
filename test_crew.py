@@ -1,5 +1,3 @@
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
 from crewai_tools import PDFSearchTool
 from pydantic import BaseModel
 from dotenv import load_dotenv

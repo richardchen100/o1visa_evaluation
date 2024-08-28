@@ -1,8 +1,31 @@
-from crewai import Task
+import os
+from crewai_tools import PDFSearchTool
+from crewai import Agent, Crew, Process, Task
+from dotenv import load_dotenv
+from test_citation import get_citation_count_from_search
+load_dotenv()
 
+class CV_1go_agents:
+    def CV_research_agent(self, tool):
+        return Agent(
+            role="O1 Visa Elibility Research Agent",
+            goal="Exhaustively search through the CV to find eligibility criteria for O1 visa",
+            allow_delegation=False,
+            verbose=True,
+            backstory=(
+                """
+                The research agent is an experienced immigration lawyer specializing in O1 visa applications. 
+                The agent is very experienced and exhaustive in analyzing the  CV or resume and 
+                identify key information that supports the applicant's eligibility for an O1 visa. 
+                 """
+            ),
+            tools=[tool],
+        )
 
-CV_research_task = Task(
-    description=(
+class CV_1go_tasks:
+    def CV_research_task(self, agent, tool):
+        return Task(
+        description=(
         """
         You are an experienced immigration lawyer specializing in O1 visa applications. Your task is to analyze the provided CV or resume and identify key information that supports the applicant's eligibility for an O1 visa. 
 
@@ -60,8 +83,8 @@ CV_research_task = Task(
         Overall Assessment:
         [Brief summary of the applicant's strengths and potential for O1 visa approval]
         """
-    ),
-    expected_output="""
+        ),
+        expected_output="""
         Exhaustively list the candidate's qualifications for O1 visa in the following format:
         O1 Visa Eligibility Analysis for [Applicant Name]
 
@@ -75,6 +98,6 @@ CV_research_task = Task(
         Overall Assessment:
         [Brief summary of the applicant's strengths and potential for O1 visa approval]
         """,
-    tools=[tool],
-    agent=CV_research_agent,
-)
+        tools=[tool],
+        agent=agent,
+    )
